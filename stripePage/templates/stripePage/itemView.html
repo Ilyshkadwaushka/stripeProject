@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Товар - {{ item.name}} {% endblock %}
+
+{% block content %}
+
+<div class="container">
+     <div class="row mt-5">
+        <div class="col-md-3 col-sm-6">
+            <a class="btn btn-light" href="{% url 'stripePage:item_list' %}">Вернуться обратно</a>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10 col-sm-12 text-center">
+          {{ item.name}} - {{ item.price }} ₽ - {{ item.description }}
+        </div>
+
+        <form action="{% url 'stripePage:cart_add' item.id %}" method="post">
+            {{ cart_product_form }}
+            {% csrf_token %}
+            <input type="submit" value="В корзину">
+        </form>
+
+    </div>
+</div>
+
+
+{% endblock %}
