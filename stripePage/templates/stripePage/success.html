@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Спасибо за заказ! {% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10 col-sm-12 text-center">
+            <h2>
+                Мы ценим ваc! Если у вас есть какие-либо вопросы, пожалуйста, напишите по электронной почте
+                <a href="mailto:orders@example.com">orders@example.com</a>.
+            </h2>
+            <h3>
+                <a href="{% url 'stripePage:item_list' %}">На главную страницу</a>
+            </h3>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

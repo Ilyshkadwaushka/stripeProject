@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  django:
+    environment:
+      'STRIPE_PUBLIC_KEY': PK_KEY
+      'STRIPE_SECRET_KEY': SK_KEY
+    image: django-docker:0.0.1
+    build: ./
+    command: bash -c "cd stripeProject &&
+      python manage.py runserver 0.0.0.0:8000 "
+    volumes:
+      - ..:/app
+    ports:
+      - "8000:8000"

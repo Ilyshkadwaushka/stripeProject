@@ -12,18 +12,43 @@
     </div>
 
     <div class="row justify-content-center mt-5">
-        <div class="col-md-10 col-sm-12 text-center">
-          {{ item.name}} - {{ item.price }} ₽ - {{ item.description }}
-        </div>
-
-        <form action="{% url 'stripePage:cart_add' item.id %}" method="post">
-            {{ cart_product_form }}
-            {% csrf_token %}
-            <input type="submit" value="В корзину">
-        </form>
-
+        <section>
+          <div class="container py-5">
+            <div class="row justify-content-center">
+              <div class="col-md-8 col-lg-6 col-xl-4">
+                <div class="card text-black">
+                  <img src="{{ item.thumbnail.url }}"
+                    class="card-img-top" alt="Image" />
+                  <div class="card-body">
+                    <div class="text-center">
+                      <h5 class="card-title"> {{ item.name}}</h5>
+                    </div>
+                    <div>
+                      <div class="d-flex justify-content-between">
+                          {% if item.description|length > 0 %}
+                            <span>Описание товара: </span><span>{{ item.description }}</span>
+                          {% else %}
+                            <span>Описание товара: </span><span>отсутствует</span>
+                          {% endif %}
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between font-weight-bold mt-4">
+                      <span>Цена</span><span>{{ price }} ₽</span>
+                    </div>
+                    <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                      <form action="{% url 'stripePage:cart_add' item.id %}" method="post">
+                          {{ cart_product_form }}
+                          {% csrf_token %}
+                          <input type="submit" value="В корзину">
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
     </div>
 </div>
-
 
 {% endblock %}

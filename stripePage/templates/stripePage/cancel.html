@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} Отмена оплаты {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-10 col-sm-12 text-center">
+            <h2>
+                Забыл положить что-то в корзину? <a href="{% url 'stripePage:cart' %}">Попробуй еще раз</a>
+            </h2>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

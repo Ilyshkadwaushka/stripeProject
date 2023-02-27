@@ -1,5 +1,5 @@
 from django.conf import settings
-from .models import Item
+from .models import Item, Price
 from decimal import Decimal
 
 class Cart:
@@ -15,7 +15,7 @@ class Cart:
     def add(self, item: Item, quantity=1, override_quantity = False):
         item_pk = str(item.pk)
         if item_pk not in self.cart:
-            self.cart[item_pk] = {'quantity': 0, 'price': str(item.price)}
+            self.cart[item_pk] = {'quantity': 0, 'price': str(Price.objects.select_related('item').filter(pk=item.pk).get().price)}
 
         if override_quantity:
             self.cart[item_pk]['quantity'] = quantity
